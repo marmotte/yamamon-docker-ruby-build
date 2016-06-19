@@ -2,7 +2,7 @@ FROM       alpine
 MAINTAINER Yosuke Yamamoto "yosuke@pyrites.jp"
 
 ## Setting Args
-ARG RUBY_VERSION=2.1.7
+ARG RUBY_VERSION=2.3.1
 ARG RUBY_BUILD_PATH=/usr/local/ruby-build
 ARG RUBY_PATH=/opt/ruby
 ARG FOREGO_PATH=/usr/local/bin
@@ -12,8 +12,9 @@ ENV PATH $RUBY_PATH/bin:${PATH}
 
 ## Required Packages Install
 RUN apk update && \
+    apk upgrade && \
     apk add git curl bash && \
-    apk add --virtual ruby-deps build-base openssl-dev libffi-dev readline-dev zlib-dev ncurses-dev gdbm-dev bzip2-dev && \
+    apk add --virtual ruby-deps linux-headers build-base openssl-dev libffi-dev readline-dev zlib-dev ncurses-dev gdbm-dev bzip2-dev && \
     (cd $FOREGO_PATH; curl https://bin.equinox.io/c/ekMN3bCZFUn/forego-stable-linux-amd64.tgz | tar xzf -)
 
 ## Install ruby-build and rails

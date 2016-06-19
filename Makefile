@@ -1,5 +1,5 @@
 repository = ruby-build
-ruby_version = 2.1.7
+ruby_version = 2.3.1
 all: build
 
 build:
